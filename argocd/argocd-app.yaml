@@ -3,6 +3,9 @@ kind: Application
 metadata:
   name: my-app
   namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: dean377/project2
+    argocd-image-updater.argoproj.io/write-back-method: git
 spec:
   project: default
   source:
