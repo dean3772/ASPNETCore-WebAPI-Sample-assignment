@@ -15,7 +15,7 @@ replicaCount: 1
 image:
   repository: dean377/project2
   pullPolicy: IfNotPresent
-  tag: v3
+  tag: v1
 
 imagePullSecrets: []
 nameOverride: ""
