@@ -2,6 +2,12 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+env:
+  - name: ASPNETCORE_URLS
+    value: "http://*:80"
+  - name: ASPNETCORE_ENVIRONMENT
+    value: "Development"
+
 replicaCount: 1
 
 image:
