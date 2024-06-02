@@ -10,7 +10,7 @@ env:
   - name: ASPNETCORE_ENVIRONMENT
     value: "Development"
 
-replicaCount: 1
+replicaCount: 2
 
 image:
   repository: dean377/project2
