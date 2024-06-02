@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/dean3772/ASPNETCore-WebAPI-Sample-assignment.git'
+    targetRevision: HEAD
+    path: 'myapp'
+    helm:
+      valueFiles:
+        - values.yaml
+    secretRef:
+      name: my-repo-secret
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: 'default'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
