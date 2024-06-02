@@ -5,9 +5,7 @@ metadata:
   labels:
     {{- include "myapp.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-  {{- end }}
   selector:
     matchLabels:
       {{- include "myapp.selectorLabels" . | nindent 6 }}
@@ -44,13 +42,13 @@ spec:
             {{- end }}
           livenessProbe:
             httpGet:
-              path: /swagger/index.html
+              path: {{ .Values.healthCheckPath }}
               port: http
             initialDelaySeconds: 10
             periodSeconds: 10
           readinessProbe:
             httpGet:
-              path: /swagger/index.html
+              path: {{ .Values.healthCheckPath }}
               port: http
             initialDelaySeconds: 10
             periodSeconds: 10
@@ -68,3 +66,24 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+
+---
+
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "myapp.fullname" . }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "myapp.fullname" . }}
+  minReplicas: {{ .Values.autoscaling.minReplicas }}
+  maxReplicas: {{ .Values.autoscaling.maxReplicas }}
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.autoscaling.targetCPUUtilizationPercentage }}
