@@ -12,8 +12,6 @@ spec:
     helm:
       valueFiles:
         - values.yaml
-    secretRef:
-      name: my-repo-secret
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: 'default'
