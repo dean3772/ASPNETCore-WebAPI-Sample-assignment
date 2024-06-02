@@ -15,7 +15,7 @@ replicaCount: 2
 image:
   repository: dean377/project2
   pullPolicy: IfNotPresent
-  tag: v3
+  tag: v4
 
 imagePullSecrets: []
 nameOverride: ""
@@ -54,7 +54,7 @@ autoscaling:
   minReplicas: 2
   maxReplicas: 10
   targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 70
 
 nodeSelector: {}
 
