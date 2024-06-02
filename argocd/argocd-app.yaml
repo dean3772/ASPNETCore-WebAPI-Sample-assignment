@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: my-app
+  name: myapp
   namespace: argocd
   annotations:
     argocd-image-updater.argoproj.io/image-list: dean377/project2
