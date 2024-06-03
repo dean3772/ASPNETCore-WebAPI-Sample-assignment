@@ -10,6 +10,6 @@ export let options = {
 };
 
 export default function () {
-  http.get('http://my-app-service.default.svc.cluster.local/');
+  http.get('http://myapp.default.svc.cluster.local/'); // Updated service URL
   sleep(1);
 }
