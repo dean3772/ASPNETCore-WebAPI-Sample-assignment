@@ -10,6 +10,6 @@ export let options = {
 };
 
 export default function () {
-  http.get('http://myapp.default.svc.cluster.local/'); // Updated service URL
+  http.get('http://localhost:8080/swagger/index.html');
   sleep(1);
 }
